@@ -4,6 +4,7 @@ var intervaloCronometro;
     var segundos = 0;
 
     function iniciarCronometro() {
+        reiniciarCronometro ();
       intervaloCronometro = setInterval(actualizarCronometro, 1000);
     }
 
