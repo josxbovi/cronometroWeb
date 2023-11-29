@@ -1,39 +1,43 @@
-var intervaloCronometro;
-    var horas = 0;
-    var minutos = 0;
-    var segundos = 0;
+let running = false;
+let startTime;
+let elapsedTime = 0;
+let timerInterval;
 
-    function iniciarCronometro() {
-        reiniciarCronometro ();
-      intervaloCronometro = setInterval(actualizarCronometro, 1000);
-    }
-
-    function reiniciarCronometro() {
-      clearInterval(intervaloCronometro);
-      horas = 0;
-      minutos = 0;
-      segundos = 0;
-      actualizarCronometro();
-    }
-
-    function pausarCronometro() {
-      clearInterval(intervaloCronometro);
-    }
-
-    function actualizarCronometro() {
-      segundos++;
-      if (segundos >= 60) {
-        segundos = 0;
-        minutos++;
-        if (minutos >= 60) {
-          minutos = 0;
-          horas++;
+function startStop() {
+    if (running) {
+        // Pausar
+        clearInterval(timerInterval);
+        running = false;
+    } else {
+        // Iniciar o continuar
+        if (elapsedTime === 0) {
+            startTime = new Date().getTime();
+        } else {
+            startTime = new Date().getTime() - elapsedTime;
         }
-      }
-      var timeString = pad(horas) + ":" + pad(minutos) + ":" + pad(segundos);
-      document.querySelector(".cronometro").textContent = timeString;
+        timerInterval = setInterval(updateTime, 1000);
+        running = true;
     }
+}
 
-    function pad(value) {
-      return value.toString().padStart(2, "0");
-    }
+function updateTime() {
+    const currentTime = new Date().getTime();
+    elapsedTime = currentTime - startTime;
+    updateDisplay();
+}
+
+function updateDisplay() {
+    const display = document.getElementById("display");
+    const time = new Date(elapsedTime);
+    const hours = time.getUTCHours().toString().padStart(2, "0");
+    const minutes = time.getUTCMinutes().toString().padStart(2, "0");
+    const seconds = time.getUTCSeconds().toString().padStart(2, "0");
+    display.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+function reset() {
+    clearInterval(timerInterval);
+    running = false;
+    elapsedTime = 0;
+    updateDisplay();
+}

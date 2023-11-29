@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<link rel="stylesheet" href="./style/style.css">
-  <title>Cronómetro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta author="Jose Bovi">
+  <meta description="Cronometro">
+  <meta keywords="Cronometro, Javascript, HTML, CSS">
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Document</title>
 </head>
 <body>
-  <div class="container">
-    <div class="cronometro">00:00:00</div>
-    <div class="buttons">
-      <button onclick="iniciarCronometro()">Iniciar</button>
-      <button onclick="reiniciarCronometro()">Reset</button>
-      <button onclick="pausarCronometro()">Pausar</button>
-    </div>
-  </div>
-  <script src="./js/script.js"></script>
+  <div class="cronometro">
+    <div id="display">00:00:00</div>
+    <button onclick="startStop()">Iniciar / Pausar</button>
+    <button onclick="reset()">Reset</button>
+</div>
+
+<script src="./js/script.js"></script>
 </body>
 </html>

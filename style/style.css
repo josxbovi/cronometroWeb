@@ -1,11 +1,25 @@
-.container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .cronometro {
-    font-size: 48px;
-    margin-bottom: 20px;
-  }
-  .buttons {
-    margin-top: 20px;
-  }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.cronometro {
+  text-align: center;
+  background-color: rgb(0, 255, 213);
+  padding: 40px;
+}
+
+#display {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+button {
+  font-size: 1em;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
